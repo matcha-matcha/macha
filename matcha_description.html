@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MATCHA - Extension Description</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f5f5; color: #333; }
+
+    .lang-switcher {
+      background: #2d5a1b;
+      padding: 12px 24px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .lang-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.5);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover, .lang-btn.active {
+      background: white;
+      color: #2d5a1b;
+    }
+
+    .container { max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+
+    .hero {
+      text-align: center;
+      padding: 48px 24px;
+      background: linear-gradient(135deg, #2d5a1b, #4a8a2a);
+      color: white;
+      border-radius: 16px;
+      margin-bottom: 32px;
+    }
+    .hero h1 { font-size: 48px; font-weight: 800; letter-spacing: 4px; margin-bottom: 8px; }
+    .hero .tagline { font-size: 18px; opacity: 0.9; margin-bottom: 24px; }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .section h2 {
+      color: #2d5a1b;
+      font-size: 20px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e8f5e0;
+    }
+    .section p { line-height: 1.8; color: #555; margin-bottom: 10px; }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .feature {
+      background: #f9fdf5;
+      border: 1px solid #d4edba;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+    .feature .icon { font-size: 32px; margin-bottom: 10px; }
+    .feature h3 { color: #2d5a1b; font-size: 15px; margin-bottom: 6px; }
+    .feature p { font-size: 13px; color: #666; line-height: 1.6; }
+
+    .steps { counter-reset: step; }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .step-num {
+      background: #2d5a1b;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    .step-content h3 { color: #333; margin-bottom: 4px; font-size: 15px; }
+    .step-content p { font-size: 14px; color: #666; line-height: 1.6; }
+
+    .langs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .lang-tag {
+      background: #e8f5e0;
+      color: #2d5a1b;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .note {
+      background: #fff8e1;
+      border-left: 4px solid #ffc107;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #999;
+      font-size: 13px;
+    }
+    footer a { color: #2d5a1b; text-decoration: none; }
+
+    .lang-content { display: none; }
+    .lang-content.active { display: block; }
+  </style>
+</head>
+<body>
+
+<div class="lang-switcher">
+  <button class="lang-btn active" onclick="switchLang('en')">English</button>
+  <button class="lang-btn" onclick="switchLang('ja')">日本語</button>
+  <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+  <button class="lang-btn" onclick="switchLang('ko')">한국어</button>
+  <button class="lang-btn" onclick="switchLang('es')">Español</button>
+  <button class="lang-btn" onclick="switchLang('fr')">Français</button>
+  <button class="lang-btn" onclick="switchLang('de')">Deutsch</button>
+  <button class="lang-btn" onclick="switchLang('pt')">Português</button>
+</div>
+
+<div class="container">
+
+  <!-- ENGLISH -->
+  <div class="lang-content active" id="lang-en">
+    <div class="hero">
+      <h1>MATCHA</h1>
+      <div class="tagline">Auto-translate YouTube subtitles to your language</div>
+      <div class="badge">🍵 Free · No ads · No data collection</div>
+    </div>
+
+    <div class="section">
+      <h2>What is MATCHA?</h2>
+      <p>MATCHA automatically sets YouTube subtitles to your preferred language. When you watch a foreign video, subtitles appear in your language instantly — no manual clicking required.</p>
+      <p>For videos already in your native language, MATCHA smartly turns off unnecessary subtitles to keep your screen clean.</p>
+      <p>MATCHA also includes a built-in audio compressor. Quiet dialogue becomes easier to hear, sudden loud sounds are softened — so you can enjoy any video without constantly reaching for the volume.</p>
+    </div>
+
+    <div class="section">
+      <h2>Features</h2>
+      <div class="features">
+        <div class="feature">
+          <div class="icon">⚡</div>
+          <h3>Fully Automatic</h3>
+          <p>Subtitles are set automatically every time a video loads.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🧠</div>
+          <h3>Smart Detection</h3>
+          <p>Detects if the video is in your language and adjusts accordingly.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🌍</div>
+          <h3>8 Languages</h3>
+          <p>Japanese, English, Spanish, French, German, Chinese, Korean, Portuguese.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>Privacy First</h3>
+          <p>No data sent to external servers. Everything stays on your device.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>How to Use</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Install MATCHA</h3>
+            <p>Click "Add to Chrome" from the Chrome Web Store.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Set your language</h3>
+            <p>Click the MATCHA icon in the toolbar and select your preferred subtitle language.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Watch YouTube</h3>
+            <p>That's it! MATCHA works automatically in the background.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Supported Languages</h2>
+      <div class="langs">
+        <span class="lang-tag">🇯🇵 Japanese</span>
+        <span class="lang-tag">🇺🇸 English</span>
+        <span class="lang-tag">🇪🇸 Spanish</span>
+        <span class="lang-tag">🇫🇷 French</span>
+        <span class="lang-tag">🇩🇪 German</span>
+        <span class="lang-tag">🇨🇳 Chinese</span>
+        <span class="lang-tag">🇰🇷 Korean</span>
+        <span class="lang-tag">🇧🇷 Portuguese</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🎛 Audio Settings (Advanced)</h2>
+      <p>Ever struggle to catch quiet dialogue, then get blasted by a sudden explosion or scream? MATCHA's audio compressor quietly works in the background — bringing out soft voices while taming harsh peaks, so you can watch comfortably without touching the volume dial.</p>
+      <p>Choose from built-in presets like <strong>Anime / Movie</strong>, <strong>Gaming</strong>, <strong>Music</strong>, and <strong>Podcast</strong> — or dial in your own perfect settings and save them as a custom preset.</p>
+      <p style="margin-top:8px;">Click <strong>⚙ Open Advanced Settings</strong> to fine-tune each parameter.</p>
+      <div class="steps" style="margin-top:16px;">
+        <div class="step">
+          <div class="step-num">🔊</div>
+          <div class="step-content">
+            <h3>Gain — Volume</h3>
+            <p>Adjusts the master volume independently from YouTube's own volume. Range: 0.5× to 2.0×. Default is 1.0 (no change).</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">⚖️</div>
+          <div class="step-content">
+            <h3>Ratio — Volume Leveling</h3>
+            <p>Compresses loud sounds so volume stays consistent. Higher = more leveling. Great for videos with sudden loud moments.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">🎚️</div>
+          <div class="step-content">
+            <h3>Threshold — Activation Level</h3>
+            <p>The volume level (in dB) at which compression kicks in. Lower values = compression starts earlier. 0dB means compression is off.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">⚡</div>
+          <div class="step-content">
+            <h3>Attack — Response Speed</h3>
+            <p>How quickly the compressor reacts to loud sounds. Lower = faster response. Best kept low for speech.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">🌊</div>
+          <div class="step-content">
+            <h3>Release — Fade-out Time</h3>
+            <p>How quickly compression fades after a loud sound. Higher = smoother, lower = tighter control.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">🌀</div>
+          <div class="step-content">
+            <h3>Knee — Smoothness</h3>
+            <p>How gradually compression is applied near the threshold. Higher = smoother and more natural sounding.</p>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top:16px; font-size:13px; color:#888;">💡 Tip: Use presets like <strong>Anime / Movie</strong> or <strong>Podcast</strong> to apply optimized settings automatically.</p>
+    </div>
+
+    <div class="section">
+      <div class="note">⚠️ MATCHA relies on YouTube's subtitle menu. If YouTube updates its interface, functionality may temporarily be affected. Updates will be provided as needed.</div>
+    </div>
+  </div>
+
+  <!-- 日本語 -->
+  <div class="lang-content" id="lang-ja">
+    <div class="hero">
+      <h1>MATCHA</h1>
+      <div class="tagline">YouTubeの字幕を自動で母国語に切り替え</div>
+      <div class="badge">🍵 無料 · 広告なし · データ収集なし</div>
+    </div>
+
+    <div class="section">
+      <h2>MATCHAとは？</h2>
+      <p>MATCHAはYouTubeの字幕を自動で設定する拡張機能です。外国語の動画を開くと、自動で翻訳字幕が表示されます。手動でメニューを操作する必要はありません。</p>
+      <p>母国語の動画では、不要な字幕を自動でオフにしてすっきりした画面を保ちます。</p>
+      <p>さらに、オーディオコンプレッサー機能も搭載。小さなセリフはしっかり聴こえ、急な大音量は自動で抑えてくれるので、音量調整に気をとられず動画に集中できます。</p>
+    </div>
+
+    <div class="section">
+      <h2>特徴</h2>
+      <div class="features">
+        <div class="feature">
+          <div class="icon">⚡</div>
+          <h3>完全自動</h3>
+          <p>動画を開くたびに自動で字幕を設定します。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🧠</div>
+          <h3>スマート判定</h3>
+          <p>母国語動画か外国語動画かを自動で判断します。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🌍</div>
+          <h3>8言語対応</h3>
+          <p>日本語・英語・スペイン語・フランス語・ドイツ語・中国語・韓国語・ポルトガル語。</p>
+        </div>
+        <div class="feature">
+          <div class="icon">🔒</div>
+          <h3>プライバシー重視</h3>
+          <p>外部サーバーへのデータ送信なし。すべてあなたのデバイス内で完結。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>使い方</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>MATCHAをインストール</h3>
+            <p>Chromeウェブストアから「Chromeに追加」をクリック。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>言語を設定</h3>
+            <p>ツールバーのMATCHAアイコンをクリックして、字幕言語を選択。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>YouTubeを見るだけ</h3>
+            <p>あとはMATCHAが自動でやってくれます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🎛 音声設定（詳細）</h2>
+      <p>小さなセリフが聞き取りにくい、と思ったら次の瞬間に爆発音で耳がびっくり——そんな経験ありませんか？MATCHAのオーディオコンプレッサーは、小さな音はしっかり聴こえるように、大きすぎる音は耳に優しく抑えてくれます。音量調整に気をとられず、コンテンツに集中できます。</p>
+      <p>用途に合わせた<strong>アニメ・映画</strong>、<strong>ゲーム実況</strong>、<strong>音楽</strong>、<strong>ポッドキャスト</strong>などのプリセットをすぐに使えるほか、自分好みに細かく調整した設定をオリジナルプリセットとして保存することもできます。</p>
+      <p style="margin-top:8px;"><strong>⚙ 詳細設定を開く</strong>から各パラメーターを調整できます。</p>
+      <div class="steps" style="margin-top:16px;">
+        <div class="step">
+          <div class="step-num">🔊</div>
+          <div class="step-content">
+            <h3>Gain — 音量</h3>
+            <p>YouTubeの音量とは別に、マスター音量を調整します。範囲：0.5×〜2.0×。デフォルトは1.0（変化なし）。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">⚖️</div>
+          <div class="step-content">
+            <h3>Ratio — 音量の均一化</h3>
+            <p>大きな音を圧縮して音量を一定に保ちます。値が高いほど均一化が強くなります。突然大きな音が出る動画に効果的。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">🎚️</div>
+          <div class="step-content">
+            <h3>Threshold — 効き始めのレベル</h3>
+            <p>圧縮が始まる音量レベル（dB）。値を下げると早めに圧縮が始まります。0dBでは圧縮がほぼ無効。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">⚡</div>
+          <div class="step-content">
+            <h3>Attack — 反応の速さ</h3>
+            <p>大きな音に対してコンプレッサーが反応するまでの速さ。値が低いほど素早く反応します。会話系は低めがおすすめ。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">🌊</div>
+          <div class="step-content">
+            <h3>Release — 余韻の長さ</h3>
+            <p>大きな音の後、圧縮が解除されるまでの時間。高いほど自然な聴こえ方になります。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">🌀</div>
+          <div class="step-content">
+            <h3>Knee — なめらかさ</h3>
+            <p>Thresholdに近い音量での圧縮のかかり方をなめらかにします。高いほど自然な音になります。</p>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top:16px; font-size:13px; color:#888;">💡 ヒント：<strong>アニメ・映画</strong> や <strong>ポッドキャスト</strong> などのプリセットを使うと最適な設定が自動で適用されます。</p>
+    </div>
+
+    <div class="section">
+      <div class="note">⚠️ MATCHAはYouTubeの字幕メニューを操作します。YouTubeのUIが更新された場合、一時的に動作しなくなる可能性があります。その場合は順次アップデート対応します。</div>
+    </div>
+  </div>
+
+  <!-- 中文 -->
+  <div class="lang-content" id="lang-zh">
+    <div class="hero">
+      <h1>MATCHA</h1>
+      <div class="tagline">自动将YouTube字幕切换为您的母语</div>
+      <div class="badge">🍵 免费 · 无广告 · 不收集数据</div>
+    </div>
+    <div class="section">
+      <h2>什么是MATCHA？</h2>
+      <p>MATCHA是一款自动设置YouTube字幕的扩展程序。打开外语视频时，字幕会自动以您的语言显示，无需手动操作。</p>
+      <p>对于母语视频，MATCHA会智能关闭不必要的字幕，保持清爽的观看界面。</p>
+      <p>此外，MATCHA还内置了音频压缩器。细小的台词变得清晰易懂，突然的大音量也会被自动压制——让你全身心投入视频内容，无需频繁调整音量。</p>
+    </div>
+    <div class="section">
+      <h2>使用方法</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h3>安装MATCHA</h3><p>从Chrome网上应用店点击「添加至Chrome」。</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h3>设置语言</h3><p>点击工具栏中的MATCHA图标，选择字幕语言。</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h3>观看YouTube</h3><p>就这些！MATCHA会在后台自动运行。</p></div></div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>🎛 音频设置（高级）</h2>
+      <p>台词声音太小听不清，下一秒又被爆炸声吓一跳？MATCHA的音频压缩器让细小的声音更清晰可辨，同时柔和地压制过大的音量，让你专注享受内容，不再频繁调音量。</p>
+      <p>内置<strong>动漫/电影</strong>、<strong>游戏</strong>、<strong>音乐</strong>、<strong>播客</strong>等场景预设，也可以将自己喜欢的设置保存为个人专属预设。</p>
+      <p style="margin-top:8px;">点击 <strong>⚙ 打开高级设置</strong> 可调整各项参数。</p>
+      <div class="steps" style="margin-top:16px;">
+        <div class="step"><div class="step-num">🔊</div><div class="step-content"><h3>Gain — 音量</h3><p>独立于YouTube音量调整主音量。范围：0.5×〜2.0×，默认1.0（不变）。</p></div></div>
+        <div class="step"><div class="step-num">⚖️</div><div class="step-content"><h3>Ratio — 音量均衡</h3><p>压缩较大的声音使音量保持稳定。值越高均衡效果越强，适合音量突变的视频。</p></div></div>
+        <div class="step"><div class="step-num">🎚️</div><div class="step-content"><h3>Threshold — 阈值</h3><p>压缩开始的音量级别（dB）。值越低压缩越早开始，0dB时压缩几乎无效。</p></div></div>
+        <div class="step"><div class="step-num">⚡</div><div class="step-content"><h3>Attack — 启动速度</h3><p>压缩器对较大声音的反应速度。值越低反应越快，语音内容建议设低。</p></div></div>
+        <div class="step"><div class="step-num">🌊</div><div class="step-content"><h3>Release — 释放时间</h3><p>大声音过后压缩恢复的时间。值越高声音越自然。</p></div></div>
+        <div class="step"><div class="step-num">🌀</div><div class="step-content"><h3>Knee — 平滑度</h3><p>压缩在阈值附近的过渡方式。值越高声音越自然。</p></div></div>
+      </div>
+      <p style="margin-top:16px; font-size:13px; color:#888;">💡 提示：使用 <strong>动漫/电影</strong> 或 <strong>播客</strong> 等预设可自动应用优化设置。</p>
+    </div>
+
+    <div class="section"><div class="note">⚠️ MATCHA依赖YouTube的字幕菜单。如果YouTube更新界面，功能可能会暂时受影响。我们将及时提供更新。</div></div>
+  </div>
+
+  <!-- 한국어 -->
+  <div class="lang-content" id="lang-ko">
+    <div class="hero">
+      <h1>MATCHA</h1>
+      <div class="tagline">YouTube 자막을 자동으로 모국어로 설정</div>
+      <div class="badge">🍵 무료 · 광고 없음 · 데이터 수집 없음</div>
+    </div>
+    <div class="section">
+      <h2>MATCHA란?</h2>
+      <p>MATCHA는 YouTube 자막을 자동으로 설정하는 확장 프로그램입니다. 외국어 동영상을 열면 자동으로 번역 자막이 표시됩니다.</p>
+      <p>모국어 동영상에서는 불필요한 자막을 자동으로 꺼서 화면을 깔끔하게 유지합니다.</p>
+      <p>또한 오디오 컴프레서 기능도 탑재되어 있습니다. 작은 대사는 또렷하게 들리고, 갑작스러운 큰 소리는 자동으로 부드러워져 음량 조절 없이도 편안하게 시청할 수 있습니다.</p>
+    </div>
+    <div class="section">
+      <h2>사용 방법</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h3>MATCHA 설치</h3><p>Chrome 웹 스토어에서 「Chrome에 추가」를 클릭하세요.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h3>언어 설정</h3><p>툴바의 MATCHA 아이콘을 클릭하여 자막 언어를 선택하세요.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h3>YouTube 시청</h3><p>이게 전부입니다! MATCHA가 자동으로 작동합니다.</p></div></div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>🎛 오디오 설정 (고급)</h2>
+      <p>조용한 대사는 잘 안 들리는데 갑자기 폭발음에 깜짝 놀란 적 있으신가요? MATCHA의 오디오 컴프레서는 작은 소리는 또렷하게, 너무 큰 소리는 부드럽게 조절해줍니다. 음량 조절 없이도 편안하게 시청할 수 있습니다.</p>
+      <p><strong>애니/영화</strong>, <strong>게임</strong>, <strong>음악</strong>, <strong>팟캐스트</strong> 등 용도별 프리셋을 바로 사용할 수 있고, 자신만의 설정을 커스텀 프리셋으로 저장하는 것도 가능합니다.</p>
+      <p style="margin-top:8px;"><strong>⚙ 고급 설정 열기</strong>에서 각 파라미터를 세부 조정할 수 있습니다.</p>
+      <div class="steps" style="margin-top:16px;">
+        <div class="step"><div class="step-num">🔊</div><div class="step-content"><h3>Gain — 볼륨</h3><p>YouTube 볼륨과 별개로 마스터 볼륨을 조절합니다. 범위: 0.5×〜2.0×, 기본값 1.0.</p></div></div>
+        <div class="step"><div class="step-num">⚖️</div><div class="step-content"><h3>Ratio — 음량 균일화</h3><p>큰 소리를 압축해 음량을 일정하게 유지합니다. 값이 높을수록 효과가 강해집니다.</p></div></div>
+        <div class="step"><div class="step-num">🎚️</div><div class="step-content"><h3>Threshold — 임계값</h3><p>압축이 시작되는 음량 레벨(dB). 낮을수록 일찍 압축이 시작됩니다.</p></div></div>
+        <div class="step"><div class="step-num">⚡</div><div class="step-content"><h3>Attack — 어택 속도</h3><p>큰 소리에 반응하는 속도. 낮을수록 빠르게 반응합니다.</p></div></div>
+        <div class="step"><div class="step-num">🌊</div><div class="step-content"><h3>Release — 릴리즈 시간</h3><p>압축이 해제되는 시간. 높을수록 자연스러운 소리가 납니다.</p></div></div>
+        <div class="step"><div class="step-num">🌀</div><div class="step-content"><h3>Knee — 부드러움</h3><p>임계값 근처에서 압축이 부드럽게 적용됩니다. 높을수록 자연스럽습니다.</p></div></div>
+      </div>
+      <p style="margin-top:16px; font-size:13px; color:#888;">💡 팁: <strong>애니/영화</strong> 또는 <strong>팟캐스트</strong> 프리셋을 사용하면 최적화된 설정이 자동으로 적용됩니다.</p>
+    </div>
+
+    <div class="section"><div class="note">⚠️ MATCHA는 YouTube의 자막 메뉴에 의존합니다. YouTube가 인터페이스를 업데이트하면 기능이 일시적으로 영향을 받을 수 있습니다.</div></div>
+  </div>
+
+  <!-- Español -->
+  <div class="lang-content" id="lang-es">
+    <div class="hero">
+      <h1>MATCHA</h1>
+      <div class="tagline">Traduce automáticamente los subtítulos de YouTube a tu idioma</div>
+      <div class="badge">🍵 Gratis · Sin anuncios · Sin recopilación de datos</div>
+    </div>
+    <div class="section">
+      <h2>¿Qué es MATCHA?</h2>
+      <p>MATCHA configura automáticamente los subtítulos de YouTube en tu idioma preferido. Al abrir un video en idioma extranjero, los subtítulos aparecen instantáneamente sin necesidad de hacer clic manualmente.</p>
+      <p>Para videos en tu idioma nativo, MATCHA desactiva los subtítulos innecesarios automáticamente.</p>
+      <p>Además, MATCHA incluye un compresor de audio integrado. Los diálogos suaves se escuchan con más claridad y los sonidos repentinos y fuertes se suavizan automáticamente, para que puedas disfrutar sin tocar el volumen.</p>
+    </div>
+    <div class="section">
+      <h2>Cómo usar</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h3>Instala MATCHA</h3><p>Haz clic en «Añadir a Chrome» desde Chrome Web Store.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h3>Configura tu idioma</h3><p>Haz clic en el ícono MATCHA y selecciona tu idioma de subtítulos.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Mira YouTube</h3><p>¡Eso es todo! MATCHA funciona automáticamente.</p></div></div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>🎛 Configuración de audio (avanzado)</h2>
+      <p>¿Te cuesta escuchar los diálogos en voz baja y de repente te sobresalta una explosión? El compresor de audio de MATCHA realza las voces suaves y suaviza los picos de volumen, para que puedas disfrutar sin tocar el control de volumen.</p>
+      <p>Usa los presets incorporados como <strong>Anime / Película</strong>, <strong>Juegos</strong>, <strong>Música</strong> y <strong>Podcast</strong>, o guarda tu configuración favorita como un preset personalizado.</p>
+      <p style="margin-top:8px;">Haz clic en <strong>⚙ Abrir configuración avanzada</strong> para ajustar cada parámetro.</p>
+      <div class="steps" style="margin-top:16px;">
+        <div class="step"><div class="step-num">🔊</div><div class="step-content"><h3>Gain — Volumen</h3><p>Ajusta el volumen maestro independientemente del volumen de YouTube. Rango: 0.5×〜2.0×, por defecto 1.0.</p></div></div>
+        <div class="step"><div class="step-num">⚖️</div><div class="step-content"><h3>Ratio — Nivelación de volumen</h3><p>Comprime sonidos fuertes para mantener volumen constante. Mayor valor = más nivelación.</p></div></div>
+        <div class="step"><div class="step-num">🎚️</div><div class="step-content"><h3>Threshold — Nivel de umbral</h3><p>Nivel de volumen (en dB) en el que comienza la compresión. Valor más bajo = compresión más temprana.</p></div></div>
+        <div class="step"><div class="step-num">⚡</div><div class="step-content"><h3>Attack — Velocidad de respuesta</h3><p>Qué tan rápido reacciona el compresor. Menor = respuesta más rápida.</p></div></div>
+        <div class="step"><div class="step-num">🌊</div><div class="step-content"><h3>Release — Tiempo de liberación</h3><p>Cuánto tarda en desactivarse la compresión. Mayor = sonido más suave.</p></div></div>
+        <div class="step"><div class="step-num">🌀</div><div class="step-content"><h3>Knee — Suavidad</h3><p>Cuán gradualmente se aplica la compresión cerca del umbral. Mayor = más natural.</p></div></div>
+      </div>
+      <p style="margin-top:16px; font-size:13px; color:#888;">💡 Tip: Usa presets como <strong>Anime / Película</strong> o <strong>Podcast</strong> para aplicar configuraciones optimizadas automáticamente.</p>
+    </div>
+
+    <div class="section"><div class="note">⚠️ MATCHA depende del menú de subtítulos de YouTube. Si YouTube actualiza su interfaz, la funcionalidad puede verse afectada temporalmente.</div></div>
+  </div>
+
+  <!-- Français -->
+  <div class="lang-content" id="lang-fr">
+    <div class="hero">
+      <h1>MATCHA</h1>
+      <div class="tagline">Traduit automatiquement les sous-titres YouTube dans votre langue</div>
+      <div class="badge">🍵 Gratuit · Sans pub · Sans collecte de données</div>
+    </div>
+    <div class="section">
+      <h2>Qu'est-ce que MATCHA ?</h2>
+      <p>MATCHA configure automatiquement les sous-titres YouTube dans votre langue préférée. Lorsque vous regardez une vidéo en langue étrangère, les sous-titres apparaissent instantanément.</p>
+      <p>Pour les vidéos dans votre langue maternelle, MATCHA désactive les sous-titres inutiles automatiquement.</p>
+      <p>MATCHA intègre également un compresseur audio. Les dialogues discrets deviennent plus clairs, les sons soudainement forts sont atténués — pour regarder confortablement sans toucher au volume.</p>
+    </div>
+    <div class="section">
+      <h2>Comment utiliser</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h3>Installer MATCHA</h3><p>Cliquez sur « Ajouter à Chrome » depuis le Chrome Web Store.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h3>Configurer votre langue</h3><p>Cliquez sur l'icône MATCHA et sélectionnez votre langue de sous-titres.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Regarder YouTube</h3><p>C'est tout ! MATCHA fonctionne automatiquement.</p></div></div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>🎛 Paramètres audio (avancés)</h2>
+      <p>Difficile d'entendre les dialogues en voix basse, puis sursaut à cause d'une explosion soudaine ? Le compresseur audio de MATCHA met en valeur les voix douces et adoucit les pics sonores, pour regarder confortablement sans toucher au volume.</p>
+      <p>Choisissez parmi les presets intégrés <strong>Anime / Film</strong>, <strong>Jeux</strong>, <strong>Musique</strong> et <strong>Podcast</strong> — ou enregistrez vos réglages préférés comme preset personnalisé.</p>
+      <p style="margin-top:8px;">Cliquez sur <strong>⚙ Ouvrir les paramètres avancés</strong> pour affiner chaque paramètre.</p>
+      <div class="steps" style="margin-top:16px;">
+        <div class="step"><div class="step-num">🔊</div><div class="step-content"><h3>Gain — Volume</h3><p>Ajuste le volume principal indépendamment du volume YouTube. Plage : 0.5×〜2.0×, par défaut 1.0.</p></div></div>
+        <div class="step"><div class="step-num">⚖️</div><div class="step-content"><h3>Ratio — Uniformisation du volume</h3><p>Compresse les sons forts pour maintenir un volume constant. Plus la valeur est élevée, plus l'uniformisation est forte.</p></div></div>
+        <div class="step"><div class="step-num">🎚️</div><div class="step-content"><h3>Threshold — Niveau de seuil</h3><p>Le niveau de volume (en dB) auquel la compression commence. Valeur plus basse = compression plus précoce.</p></div></div>
+        <div class="step"><div class="step-num">⚡</div><div class="step-content"><h3>Attack — Vitesse de réponse</h3><p>La rapidité avec laquelle le compresseur réagit. Plus bas = réponse plus rapide.</p></div></div>
+        <div class="step"><div class="step-num">🌊</div><div class="step-content"><h3>Release — Temps de relâchement</h3><p>Le temps que met la compression à se désactiver. Plus élevé = son plus naturel.</p></div></div>
+        <div class="step"><div class="step-num">🌀</div><div class="step-content"><h3>Knee — Douceur</h3><p>La progressivité de la compression près du seuil. Plus élevé = plus naturel.</p></div></div>
+      </div>
+      <p style="margin-top:16px; font-size:13px; color:#888;">💡 Astuce : Utilisez des préréglages comme <strong>Anime / Film</strong> ou <strong>Podcast</strong> pour appliquer des paramètres optimisés automatiquement.</p>
+    </div>
+
+    <div class="section"><div class="note">⚠️ MATCHA dépend du menu de sous-titres de YouTube. Si YouTube met à jour son interface, les fonctionnalités peuvent être temporairement affectées.</div></div>
+  </div>
+
+  <!-- Deutsch -->
+  <div class="lang-content" id="lang-de">
+    <div class="hero">
+      <h1>MATCHA</h1>
+      <div class="tagline">YouTube-Untertitel automatisch in Ihre Sprache übersetzen</div>
+      <div class="badge">🍵 Kostenlos · Keine Werbung · Keine Datenerfassung</div>
+    </div>
+    <div class="section">
+      <h2>Was ist MATCHA?</h2>
+      <p>MATCHA setzt YouTube-Untertitel automatisch in Ihrer bevorzugten Sprache. Bei fremdsprachigen Videos erscheinen die Untertitel sofort — ohne manuelles Klicken.</p>
+      <p>Bei Videos in Ihrer Muttersprache schaltet MATCHA unnötige Untertitel automatisch ab.</p>
+      <p>Zusätzlich bietet MATCHA einen integrierten Audio-Kompressor. Leise Dialoge werden klarer hörbar, plötzlich laute Töne werden sanft gedämpft — für entspanntes Zuschauen ohne ständiges Nachregeln der Lautstärke.</p>
+    </div>
+    <div class="section">
+      <h2>Verwendung</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h3>MATCHA installieren</h3><p>Klicken Sie im Chrome Web Store auf „Zu Chrome hinzufügen".</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h3>Sprache einstellen</h3><p>Klicken Sie auf das MATCHA-Symbol und wählen Sie Ihre Untertitelsprache.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h3>YouTube schauen</h3><p>Das war's! MATCHA läuft automatisch im Hintergrund.</p></div></div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>🎛 Audioeinstellungen (Erweitert)</h2>
+      <p>Dialoge kaum hörbar, dann plötzlich ein ohrenbetäubender Knall? MATCHAs Audio-Kompressor hebt leise Stimmen hervor und dämpft zu laute Spitzen — für entspanntes Zuschauen ohne ständiges Nachregeln der Lautstärke.</p>
+      <p>Nutzen Sie die eingebauten Voreinstellungen <strong>Anime / Film</strong>, <strong>Gaming</strong>, <strong>Musik</strong> und <strong>Podcast</strong> — oder speichern Sie Ihre Lieblingseinstellungen als eigene Voreinstellung.</p>
+      <p style="margin-top:8px;">Klicken Sie auf <strong>⚙ Erweiterte Einstellungen öffnen</strong>, um jeden Parameter feinzujustieren.</p>
+      <div class="steps" style="margin-top:16px;">
+        <div class="step"><div class="step-num">🔊</div><div class="step-content"><h3>Gain — Lautstärke</h3><p>Passt die Hauptlautstärke unabhängig von YouTube an. Bereich: 0.5×〜2.0×, Standard 1.0.</p></div></div>
+        <div class="step"><div class="step-num">⚖️</div><div class="step-content"><h3>Ratio — Lautstärkeausgleich</h3><p>Komprimiert laute Töne für gleichmäßige Lautstärke. Höherer Wert = stärkerer Ausgleich.</p></div></div>
+        <div class="step"><div class="step-num">🎚️</div><div class="step-content"><h3>Threshold — Schwellenwert</h3><p>Der Lautstärkepegel (in dB), bei dem die Kompression einsetzt. Niedrigerer Wert = frühere Kompression.</p></div></div>
+        <div class="step"><div class="step-num">⚡</div><div class="step-content"><h3>Attack — Reaktionsgeschwindigkeit</h3><p>Wie schnell der Kompressor reagiert. Niedriger = schnellere Reaktion.</p></div></div>
+        <div class="step"><div class="step-num">🌊</div><div class="step-content"><h3>Release — Freigabezeit</h3><p>Wie lange die Kompression nach einem lauten Ton anhält. Höher = natürlicher Klang.</p></div></div>
+        <div class="step"><div class="step-num">🌀</div><div class="step-content"><h3>Knee — Weichheit</h3><p>Wie sanft die Kompression nahe dem Schwellenwert einsetzt. Höher = natürlicher.</p></div></div>
+      </div>
+      <p style="margin-top:16px; font-size:13px; color:#888;">💡 Tipp: Verwenden Sie Voreinstellungen wie <strong>Anime / Film</strong> oder <strong>Podcast</strong> für automatisch optimierte Einstellungen.</p>
+    </div>
+
+    <div class="section"><div class="note">⚠️ MATCHA ist auf das Untertitelmenü von YouTube angewiesen. Wenn YouTube seine Oberfläche aktualisiert, kann die Funktionalität vorübergehend beeinträchtigt sein.</div></div>
+  </div>
+
+  <!-- Português -->
+  <div class="lang-content" id="lang-pt">
+    <div class="hero">
+      <h1>MATCHA</h1>
+      <div class="tagline">Traduz automaticamente as legendas do YouTube para o seu idioma</div>
+      <div class="badge">🍵 Grátis · Sem anúncios · Sem coleta de dados</div>
+    </div>
+    <div class="section">
+      <h2>O que é MATCHA?</h2>
+      <p>MATCHA configura automaticamente as legendas do YouTube no seu idioma preferido. Ao abrir um vídeo em idioma estrangeiro, as legendas aparecem instantaneamente.</p>
+      <p>Para vídeos no seu idioma nativo, MATCHA desativa as legendas desnecessárias automaticamente.</p>
+      <p>MATCHA também conta com um compressor de áudio integrado. Diálogos baixos ficam mais nítidos e sons repentinamente altos são suavizados — para assistir confortavelmente sem precisar ajustar o volume.</p>
+    </div>
+    <div class="section">
+      <h2>Como usar</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h3>Instalar MATCHA</h3><p>Clique em «Adicionar ao Chrome» na Chrome Web Store.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h3>Configurar idioma</h3><p>Clique no ícone MATCHA e selecione o idioma das legendas.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h3>Assistir YouTube</h3><p>É isso! MATCHA funciona automaticamente em segundo plano.</p></div></div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>🎛 Configurações de áudio (avançado)</h2>
+      <p>Difícil ouvir diálogos baixos e de repente um susto com uma explosão? O compressor de áudio do MATCHA realça vozes suaves e suaviza picos altos, para assistir confortavelmente sem mexer no volume.</p>
+      <p>Use os presets integrados <strong>Anime / Filme</strong>, <strong>Jogos</strong>, <strong>Música</strong> e <strong>Podcast</strong> — ou salve suas configurações favoritas como um preset personalizado.</p>
+      <p style="margin-top:8px;">Clique em <strong>⚙ Abrir configurações avançadas</strong> para ajustar cada parâmetro.</p>
+      <div class="steps" style="margin-top:16px;">
+        <div class="step"><div class="step-num">🔊</div><div class="step-content"><h3>Gain — Volume</h3><p>Ajusta o volume principal independentemente do volume do YouTube. Intervalo: 0.5×〜2.0×, padrão 1.0.</p></div></div>
+        <div class="step"><div class="step-num">⚖️</div><div class="step-content"><h3>Ratio — Nivelamento de volume</h3><p>Comprime sons altos para manter volume constante. Valor maior = mais nivelamento.</p></div></div>
+        <div class="step"><div class="step-num">🎚️</div><div class="step-content"><h3>Threshold — Nível de limiar</h3><p>O nível de volume (em dB) em que a compressão começa. Valor menor = compressão mais cedo.</p></div></div>
+        <div class="step"><div class="step-num">⚡</div><div class="step-content"><h3>Attack — Velocidade de resposta</h3><p>Quão rapidamente o compressor reage. Menor = resposta mais rápida.</p></div></div>
+        <div class="step"><div class="step-num">🌊</div><div class="step-content"><h3>Release — Tempo de liberação</h3><p>Quanto tempo a compressão leva para desativar. Maior = som mais natural.</p></div></div>
+        <div class="step"><div class="step-num">🌀</div><div class="step-content"><h3>Knee — Suavidade</h3><p>Quão gradualmente a compressão é aplicada perto do limiar. Maior = mais natural.</p></div></div>
+      </div>
+      <p style="margin-top:16px; font-size:13px; color:#888;">💡 Dica: Use predefinições como <strong>Anime / Filme</strong> ou <strong>Podcast</strong> para aplicar configurações otimizadas automaticamente.</p>
+    </div>
+
+    <div class="section"><div class="note">⚠️ MATCHA depende do menu de legendas do YouTube. Se o YouTube atualizar sua interface, a funcionalidade pode ser temporariamente afetada.</div></div>
+  </div>
+
+  <footer>
+    <p>© 2025 matcha · <a href="/cdn-cgi/l/email-protection#177a7663747f7657767c787c62797e3974787a"><span class="__cf_email__" data-cfemail="d5b8b4a1b6bdb495b4bebabea0bbbcfbb6bab8">[email&#160;protected]</span></a></p>
+  </footer>
+
+</div>
+
+<script>
+  function switchLang(lang) {
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.lang-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('lang-' + lang).classList.add('active');
+    document.querySelector('.lang-btn[onclick="switchLang(\'' + lang + '\')"]').classList.add('active');
+  }
+</script>
+</body>
+</html>
